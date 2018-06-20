@@ -170,11 +170,9 @@ class Home extends Component {
             Created with <img src={heart} className="heart" alt="logo" /> by 6 guys who do not know how to work together.
           </p>
           <ul>
-            <li>Arthur Bezerra de Freitas</li>
             <li>Dickson Rammon Oliveira de almeida</li>
             <li>Filipe Nogueira Jordão</li>
             <li>Leonardo Ribeiro Borges</li>
-            <li>Mateus Feliciano</li>
             <li>Túlio Paula e Silva de Holanda Cavalcanti</li>
           </ul>
         </div>

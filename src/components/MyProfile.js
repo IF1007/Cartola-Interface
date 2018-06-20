@@ -20,6 +20,10 @@ class MyProfile extends Component {
           Pos: "Atacante",
           Nome: "Neymar Jr.",
           Valor: 100
+      },{
+        Pos: "Engenheiro de software",
+        Nome: "Pinho camisa 10",
+        Valor: 100
       }]
     };
 
@@ -40,21 +44,34 @@ class MyProfile extends Component {
 		  <button className="login-button" onClick={this.logOut}>Logout</button>
           
         </header>
-        <div className="footer">
-        <table id="customers">
-        <tbody>{this.state.data.map(function(item, key) {
-             return (
-                
-                <tr key = {key}>
-                    <td>{item.Pos}</td>
-                    <td>{item.Nome}</td>
-                    <td>{item.Valor}</td>
-                </tr>
-              )
-           
-           })}</tbody>
-          
-        </table>
+        <div className="App">
+          <div className="input-cart">
+            <label ><b>Informe suas cartoletas</b></label>
+            </div>
+            <div className="input-cart">
+            <input type="number"
+                  value={this.state.signUplogin}
+                  placeholder="cartoletas"
+                  name="nome" 
+                  onChange={this.handleChangeSignUp}
+                  required/>
+          </div>
+        </div>
+        <div className="App">
+          <table id="customers">
+            <tbody>{this.state.data.map(function(item, key) {
+              return (
+                  
+                  <tr key = {key}>
+                      <td>{item.Pos}</td>
+                      <td>{item.Nome}</td>
+                      <td>{item.Valor}</td>
+                  </tr>
+                )
+            })}
+            </tbody>
+            
+          </table>
         </div>
       </div>
     );
