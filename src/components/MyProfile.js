@@ -4,6 +4,7 @@ import logo from './images/logo.png';
 import heart from './images/heart.png';
 import './Home.css';
 import Modal from 'react-modal';
+import axios from 'axios'
 
 class MyProfile extends Component {
   constructor() {
@@ -12,26 +13,47 @@ class MyProfile extends Component {
     this.state = {
       modalIsOpen: false,
       token: '',
-      data: [{
-          Pos: 'Goleiro',
-          Nome: "Magrão",
-          Valor: 100
-      },{
-          Pos: "Atacante",
-          Nome: "Neymar Jr.",
-          Valor: 100
-      },{
-        Pos: "Engenheiro de software",
-        Nome: "Pinho camisa 10",
-        Valor: 100
-      }]
+      cartoletas: 0,
+      data: []
     };
 
     this.logOut = this.logOut.bind(this);
+    this.getPlayer = this.getPlayer.bind(this);
+    this.handleChangeCartoletas = this.handleChangeCartoletas.bind(this);
+  }
+
+  handleChangeCartoletas(event){
+    this.setState({cartoletas: event.target.value});
   }
 
   logOut(){
     window.location = 'http://localhost:3000/';
+  }
+
+  getPlayer(){
+    axios.get(`URL.QUE.TRAS.OS.JOGADORES?cartoletas=${this.state.cartoletas}`)
+      .then(res => {
+        const jogadores = res.data;
+        this.setState({data: jogadores});
+      }).catch(function (error) {
+        console.log(error);
+        alert('Servidor fora do ar.')
+      })
+    /* EXEMPLO SIMPLES 
+    alert(this.state.cartoletas)
+    this.setState({data: [{
+      Pos: 'Goleiro',
+      Nome: "Magrão",
+      Valor: 100
+  },{
+      Pos: "Atacante",
+      Nome: "Neymar Jr.",
+      Valor: 100
+  },{
+    Pos: "Engenheiro de software",
+    Nome: "Pinho camisa 10",
+    Valor: 100
+  }]});*/
   }
 
   render() {
@@ -50,15 +72,25 @@ class MyProfile extends Component {
             </div>
             <div className="input-cart">
             <input type="number"
-                  value={this.state.signUplogin}
+                  value={this.state.cartoletas}
                   placeholder="cartoletas"
                   name="nome" 
-                  onChange={this.handleChangeSignUp}
+                  onChange={this.handleChangeCartoletas}
                   required/>
-          </div>
+            </div>
+            <div className="input-cart">
+              <button className="request-button" onClick={this.getPlayer}>Consultar</button>
+            </div>
         </div>
         <div className="App">
           <table id="customers">
+            <thead>
+            <tr>
+              <th>Posição</th>
+              <th>Nome</th>
+              <th>Valor</th>
+            </tr>
+            </thead>
             <tbody>{this.state.data.map(function(item, key) {
               return (
                   

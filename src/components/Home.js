@@ -62,32 +62,31 @@ class Home extends Component {
         'Content-Type': 'application/json',        
       }
     }).then(function (response) {
-      console.log(response);
-      console.log(response.data);
-      window.teste = 'dale'
       window.location = 'http://localhost:3000/myProfile?token=' + response.data;
     })
     .catch(function (error) {
       console.log(error);
-      alert('Servidor fora do ar.')
+      alert('Login ou senha inválidos.')
     });
   }
 
   signUp(){
-    fetch('http://localhost:3002/signup', {
-      method: 'POST',
+    let data = JSON.stringify({
+      username: this.state.signUplogin,
+      password: this.state.signUpPassword
+    })
+    axios.post('http://localhost:3002/signup', data, {
       headers: {
         'Accept': 'application/json',
-        'Content-Type': 'application/json',
-        'Access-Control-Allow-Origin': '*',
-        'Access-Control-Allow-Methods': 'GET, PUT, POST, DELETE, OPTIONS',
-        'Access-Control-Allow-Headers': '*' 
-      },
-      body: JSON.stringify({
-        'username': this.state.signUplogin,
-        'password': this.state.signUpPassword, 
-      })
+        'Content-Type': 'application/json',        
+      }
+    }).then(function (response) {
+      alert('Cadastro realizado com sucesso.')
     })
+    .catch(function (error) {
+      console.log(error);
+      alert('Erro inesperado, tente mais tarde.')
+    });
   }
 
   
@@ -167,7 +166,7 @@ class Home extends Component {
         </header>
         <div className="footer">
           <p className="App-intro">
-            Created with <img src={heart} className="heart" alt="logo" /> by 6 guys who do not know how to work together.
+            Created with <img src={heart} className="heart" alt="logo" /> by 6 - 2 guys who do not know how to work together.
           </p>
           <ul>
             <li>Dickson Rammon Oliveira de almeida</li>
