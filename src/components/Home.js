@@ -167,7 +167,7 @@ class Home extends Component {
         </header>
         <div className="footer">
           <p className="App-intro">
-            Created with <img src={heart} className="heart" alt="logo" /> by 6 guys who do not know how to work together.
+            Created with <img src={heart} className="heart" alt="logo" /> by 6 - 2 guys who do not know how to work together.
           </p>
           <ul>
             <li>Dickson Rammon Oliveira de almeida</li>

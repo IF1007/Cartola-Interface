@@ -12,26 +12,33 @@ class MyProfile extends Component {
     this.state = {
       modalIsOpen: false,
       token: '',
-      data: [{
-          Pos: 'Goleiro',
-          Nome: "Magrão",
-          Valor: 100
-      },{
-          Pos: "Atacante",
-          Nome: "Neymar Jr.",
-          Valor: 100
-      },{
-        Pos: "Engenheiro de software",
-        Nome: "Pinho camisa 10",
-        Valor: 100
-      }]
+      data: []
     };
 
     this.logOut = this.logOut.bind(this);
+    this.getPlayer = this.getPlayer.bind(this);
   }
 
   logOut(){
     window.location = 'http://localhost:3000/';
+  }
+
+  getPlayer(){
+    
+    this.setState({data: [{
+      Pos: 'Goleiro',
+      Nome: "Magrão",
+      Valor: 100
+  },{
+      Pos: "Atacante",
+      Nome: "Neymar Jr.",
+      Valor: 100
+  },{
+    Pos: "Engenheiro de software",
+    Nome: "Pinho camisa 10",
+    Valor: 100
+  }]});
+    
   }
 
   render() {
@@ -55,7 +62,10 @@ class MyProfile extends Component {
                   name="nome" 
                   onChange={this.handleChangeSignUp}
                   required/>
-          </div>
+            </div>
+            <div className="input-cart">
+              <button className="request-button" onClick={this.getPlayer}>Consultar</button>
+            </div>
         </div>
         <div className="App">
           <table id="customers">
