@@ -27,12 +27,18 @@ class MyProfile extends Component {
   }
 
   logOut(){
-    window.location = 'http://localhost:3000/';
+    window.location = 'http://localhost/';
   }
 
   getPlayer(){
-    axios.get(`URL.QUE.TRAS.OS.JOGADORES?cartoletas=${this.state.cartoletas}`)
+    alert(this.state.token)
+    axios.get('http://naming-service:4000/lookup?name=processor')
+      .then(url => {
+        alert(url)
+        return axios.get(`http://localhost:3000/players/${this.state.cartoletas}`)
+      })
       .then(res => {
+        alert('pegou os broder')
         const jogadores = res.data;
         this.setState({data: jogadores});
       }).catch(function (error) {

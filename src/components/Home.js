@@ -62,7 +62,7 @@ class Home extends Component {
         'Content-Type': 'application/json',        
       }
     }).then(function (response) {
-      window.location = 'http://localhost:3000/myProfile?token=' + response.data;
+      window.location = 'http://localhost/myProfile?token=' + response.data;
     })
     .catch(function (error) {
       console.log(error);
